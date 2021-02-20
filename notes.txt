@@ -1,0 +1,22 @@
+ST7735S
+
+PIN 22, GPIO17 (SPIO-CS) -> CS
+PIN 24, GPIO18 (SPIO-CLK)-> SCL
+PIN 25, GPIO19 (SPIO->TX)-> SDA
+PIN 26, GPIO20 -> RES
+PIN 27, GPIO21 -> DC
+PIN 31, GPIO26 ->  BLK
+
+
+From demo code and datasheet:
+
+Chip select = active low.
+Command set RS is 0, data RS is 1
+Data clocked in on rising edge
+clock idle is high (may not matter)
+Bytes transmitted MS bit first
+2 byte data - command is 1, data transmitted high byte first.  CS stays low for complete 16 bit transfer.
+Looking at data sheet (and behaviour) you can't transfer a 16 bit quantity as 2 8 bit quanties with CS
+being de-asserted (i.e. going high for a bit) in the middle.
+
+
